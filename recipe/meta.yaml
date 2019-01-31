@@ -20,7 +20,7 @@ requirements:
     - param >=1.8.1
     - pyct >=0.4.4
     - setuptools >=30.3.0
-    - nodejs ==9.11.1
+    - nodejs >=8.8
   run:
     - bokeh >=1.0.0
     - param >=1.8.2
