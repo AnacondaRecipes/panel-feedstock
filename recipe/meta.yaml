@@ -21,11 +21,17 @@ requirements:
     - python >=3
     - pip
     # These are also needed at build time.
-    - pyct
+    - pyct >=0.4.4
+    - param >=1.10.0
     - bokeh >=2.3,<2.4
     - nodejs >=10.13.0
     - pyviz_comms >=0.7.4
     - requests
+    - packaging
+    - tqdm
+    - bleach
+    - setuptools >=30.3.0
+    - wheel
   run:
     - python >=3
     - bokeh >=2.3,<2.4
@@ -35,6 +41,7 @@ requirements:
     - pyviz_comms >=0.7.4
     - tqdm
     - requests
+    - bleach
 
 test:
   imports:
@@ -53,7 +60,10 @@ about:
     Panel provides tools for easily composing widgets, plots, tables, and other
     viewable objects and controls into control panels, apps, and dashboards.
   license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE.txt
+  doc_url: https://panel.holoviz.org/
+  dev_url: https://github.com/holoviz/panel
 
 extra:
   recipe-maintainers:
