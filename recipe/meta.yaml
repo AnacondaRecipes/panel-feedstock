@@ -52,6 +52,7 @@ test:
     - panel --help
   requires:
     - pip
+    - colorama  # [win]
 
 about:
   home: https://panel.holoviz.org
