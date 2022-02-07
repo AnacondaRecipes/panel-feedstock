@@ -24,11 +24,11 @@ requirements:
     - wheel
     # These are also needed at build time.
     - bleach
-    - bokeh >=2.3.0,<2.4.0
+    - bokeh >=2.4.0,<2.5.0
     - pyct >=0.4.4
     - nodejs >=10.13.0
     - packaging
-    - param >=1.9.2
+    - param >=1.10.0
     - pyviz_comms >=0.6.0
     - requests
     - tqdm >=4.48.0
