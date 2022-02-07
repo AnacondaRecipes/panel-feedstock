@@ -22,8 +22,6 @@ requirements:
     - pip
     - setuptools >=30.3.0
     - wheel
-    - nodejs >=14
-    - yaml
     # These are also needed at build time.
     - bleach
     - bokeh >=2.4.0,<2.5.0
