@@ -10,6 +10,8 @@ source:
 
 build:
   number: 0
+  # nodejs currently isn't availeble on s390x
+  skip: True  # [linux and s390x]
   noarch: python
   entry_points:
     - panel = panel.command:main
