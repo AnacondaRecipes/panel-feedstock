@@ -25,6 +25,7 @@ requirements:
     # These are also needed at build time.
     - bleach
     - bokeh >=2.4.0,<2.5.0
+    - nodejs >=14.0.0
     - pyct >=0.4.4
     - packaging
     - param >=1.9.2
