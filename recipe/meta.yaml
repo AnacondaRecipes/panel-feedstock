@@ -26,7 +26,6 @@ requirements:
     - bleach
     - bokeh >=2.4.0,<2.5.0
     - pyct >=0.4.4
-    - nodejs >=10.13.0
     - packaging
     - param >=1.9.2
     - pyviz_comms >=0.6.0
@@ -53,6 +52,8 @@ test:
   commands:
     - pip check
     - panel --help
+  downstreams:
+    - holoviews
 
 about:
   home: https://panel.holoviz.org
