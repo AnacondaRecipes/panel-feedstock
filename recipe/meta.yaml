@@ -53,8 +53,9 @@ test:
   commands:
     - pip check
     - panel --help
-  downstreams:
-    - holoviews
+  downstreams:   # [not win]
+    # CI issues on win
+    - holoviews  # [not win]
 
 about:
   home: https://panel.holoviz.org
