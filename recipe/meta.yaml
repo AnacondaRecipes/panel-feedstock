@@ -29,7 +29,7 @@ requirements:
     - nodejs >=14.0.0
     - pyct >=0.4.4
     - packaging
-    - param >=1.12.0
+    - param >=1.9.2
     - pyviz_comms >=0.6.0
     - requests
     - tqdm >=4.48.0
@@ -53,9 +53,10 @@ test:
   commands:
     - pip check
     - panel --help
-  downstreams:   # [not win]
+  # Commenting out downstreams to ease Python 3.11 build-out.
+  #downstreams:   # [not win]
     # CI issues on win
-    - holoviews  # [not win]
+    #- holoviews  # [not win]
 
 about:
   home: https://panel.holoviz.org
