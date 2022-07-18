@@ -10,6 +10,7 @@ source:
 
 build:
   number: 0
+  # trigger: 1
   # nodejs currently isn't available on s390x
   skip: True  # [py<36 or s390x]
   entry_points:
