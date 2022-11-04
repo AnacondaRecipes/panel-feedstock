@@ -76,6 +76,8 @@ about:
   dev_url: https://github.com/holoviz/panel
 
 extra:
+  skip-lints:
+    - uses_setuptools
   recipe-maintainers:
     - philippjfr
     - ocefpaf
