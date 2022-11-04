@@ -20,8 +20,9 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
+    - wheel
     - setuptools >=42
     # These are also needed at build time.
     - bleach
@@ -34,7 +35,7 @@ requirements:
     - requests
     - tqdm >=4.48.0
   run:
-    - python >=3.7
+    - python
     - bleach
     - bokeh >=2.4,<2.5
     - markdown
@@ -69,6 +70,8 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
+  license_url: https://github.com/holoviz/panel/blob/master/LICENSE.txt
+  doc_source_url: https://github.com/holoviz/panel/tree/gh-pages
   doc_url: https://panel.holoviz.org/
   dev_url: https://github.com/holoviz/panel
 
