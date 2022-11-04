@@ -1,4 +1,4 @@
-{% set version = "0.13.1" %}
+{% set version = "0.14.1" %}
 
 package:
   name: panel
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/panel/panel-{{ version }}.tar.gz
-  sha256: 0e9008f0a851cbcffbce0273d62b5bc62644d9030cc68535c824381df52113af
+  sha256: 0922421e5625498a5041123c01e8be7e12c350ce3ef180c534b45419bf20052b
 
 build:
   number: 0
@@ -20,30 +20,31 @@ build:
 
 requirements:
   host:
-    - python
+    - python >=3.7
     - pip
     - setuptools >=42
-    - wheel
     # These are also needed at build time.
     - bleach
-    - bokeh >=2.4.0,<2.5.0
-    - nodejs >=14.0.0
-    - pyct >=0.4.4
+    - bokeh >=2.4.3,<2.5
+    - nodejs >=10.13.0
     - packaging
-    - param >=1.9.2
-    - pyviz_comms >=0.6.0
+    - param >=1.9.0
+    - pyct >=0.4.4
+    - pyviz_comms >=0.7.4
     - requests
     - tqdm >=4.48.0
   run:
-    - python
+    - python >=3.7
     - bleach
-    - bokeh >=2.4.0,<2.5.0
+    - bokeh >=2.4,<2.5
     - markdown
     - param >=1.12.0
     - pyct >=0.4.4
     - pyviz_comms >=0.7.4
     - requests
+    - setuptools >=42
     - tqdm >=4.48.0
+    - typing_extensions
 
 test:
   imports:
@@ -75,3 +76,4 @@ extra:
   recipe-maintainers:
     - philippjfr
     - ocefpaf
+    - maximlt
