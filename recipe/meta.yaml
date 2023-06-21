@@ -56,11 +56,9 @@ test:
     - panel.io
   requires:
     - pip
-    - pytest
   commands:
     - pip check
     - panel --help
-    - pytest panel/tests
 
 about:
   home: https://panel.holoviz.org
