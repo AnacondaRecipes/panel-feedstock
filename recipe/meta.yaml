@@ -19,20 +19,21 @@ build:
 
 requirements:
   host:
+    - nodejs
     - python
     - pip
     - setuptools
     - wheel
     # These are also needed at build time.
-    - bleach
-    - bokeh 3.2.0
-    - nodejs
-    - pyct
-    - packaging
-    - param
-    - pyviz_comms
-    - requests
-    - tqdm
+    - bleach 4.1.0
+    - bokeh 3.1.1 # [py<39]
+    - bokeh 3.2.0 # [py>=39]
+    - pyct 0.4.8
+    - packaging 22.0
+    - param 1.12.1
+    - pyviz_comms 2.3.0
+    - requests 2.31.1
+    - tqdm 4.65.0
   run:
     - python
     - bleach
@@ -77,4 +78,3 @@ extra:
     - philippjfr
   skip-lints:
     - python_build_tool_in_run
-    - host_section_needs_exact_pinnings
