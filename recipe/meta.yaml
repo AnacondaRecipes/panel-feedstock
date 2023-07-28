@@ -29,7 +29,7 @@ requirements:
     - bokeh 3.1.1 # [py<39]
     - bokeh 3.2.0 # [py>=39]
     - pyct 0.5.0
-    - param 1.12.1
+    - param 1.13.0
     - pyviz_comms 2.3.0
     - nodejs 16.6.1
     - requests 2.31.0
