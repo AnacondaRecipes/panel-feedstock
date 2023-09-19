@@ -48,6 +48,7 @@ requirements:
     - bleach
     - typing_extensions
     - pandas >=1.2
+    - packaging
   run_constrained:
     - holoviews >=1.16.0
 
