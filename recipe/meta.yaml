@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/panel/panel-{{ version }}.tar.gz
-  sha256: ed02fdc457849b62d65c9a6ce012df977ddc09da26a4324bfcf4b588ea8b1b24
+  sha256: 30e1ad012dc3c0367f018d9260abd55fb5de48be0892ddb3f88b137825e5c84a
 
 build:
   number: 0
