@@ -49,7 +49,7 @@ requirements:
     - pandas >=1.2
     - packaging
   run_constrained:
-    - holoviews >=1.16.0
+    - holoviews >=1.17.0
 
 test:
   imports:
