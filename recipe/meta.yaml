@@ -1,4 +1,4 @@
-{% set version = "1.4.4" %}
+{% set version = "1.5.0" %}
 
 package:
   name: panel
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/panel/panel-{{ version }}.tar.gz
-  sha256: 659e9fc5b495e6519c5d07e8148fa5eeed9bc648356ec83fc299381ba5a726ef
+  sha256: 31e5cb229bbb6010ea3cc6023952c1423b008f4fa137ede3794fa6ce2e4a0f32
 
 build:
   number: 0
@@ -25,17 +25,15 @@ requirements:
     - setuptools
     - wheel
     # These are also needed at build time.
-    - bokeh >=3.4.0,<3.5
-    - markdown
+    - bokeh >=3.5.0,<3.6
     - pyct >=0.4.4
-    - param >=2.0.0,<3
+    - param >=2.1.0,<3
     - pyviz_comms >=2.0.0
     - nodejs 18.16
     - requests
-    - tqdm >=4.48.0
   run:
     - python
-    - bokeh >=3.4.0,<3.5
+    - bokeh >=3.5.0,<3.6
     - param >=2.1.0,<3
     - pyviz_comms >=2.0.0
     - markdown
