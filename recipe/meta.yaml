@@ -49,7 +49,7 @@ requirements:
   run_constrained:
     - holoviews >=1.18.0
     # set bokeh-fastapi bounds as discussed in https://github.com/AnacondaRecipes/panel-feedstock/pull/39
-    - bokeh-fastapi >=0.1.1
+    - bokeh-fastapi >=0.1.2,<0.2
 
 test:
   imports:
