@@ -1,5 +1,5 @@
 {% set name = "panel" %}
-{% set version = "1.7.5" %}
+{% set version = "1.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8bf5041174593fdb0e8c46bef3ade334ae7e97ef64f52c8955a1d7c62b5db18d
+  sha256: 972900789f9703ac97237d872c2b667a944696415ec598a6e151236cdaa7c13c
 
 build:
   number: 0
-  skip: True  # [py<310]
+  skip: true  # [py<310]
   entry_points:
     - panel = panel.command:main
   script:
@@ -23,7 +23,7 @@ requirements:
     - hatchling
     - hatch-vcs
     - param >=2.1.0
-    - bokeh >=3.7.0,<3.8.0
+    - bokeh >=3.7.0,<3.9.0
     - pyviz_comms >=0.7.4
     - nodejs 20.17
     - requests
@@ -31,7 +31,7 @@ requirements:
     - pip
   run:
     - python
-    - bokeh >=3.5.0,<3.8.0
+    - bokeh >=3.7.0,<3.9.0
     - param >=2.1.0,<3.0
     - pyviz_comms >=2.0.0
     - markdown
@@ -44,10 +44,11 @@ requirements:
     - pandas >=1.2
     - packaging
     - tqdm
+    - typing_extensions
   run_constrained:
     - holoviews >=1.18.0
     # set bokeh-fastapi bounds as discussed in https://github.com/AnacondaRecipes/panel-feedstock/pull/39
-    - bokeh-fastapi >=0.1.2,<0.2
+    - bokeh-fastapi >=0.1.2,<0.2.0
 
 test:
   imports:
