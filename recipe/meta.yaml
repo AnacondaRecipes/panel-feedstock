@@ -1,5 +1,5 @@
 {% set name = "panel" %}
-{% set version = "1.8.3" %}
+{% set version = "1.8.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 192a25fa4afdb25c5d0bf00d3749bb1b3601f25cddb76492e355fa278f91fce8
+  sha256: c4d6e7e3a895d3a42b6b69ee30d3acc191580619a2d1b8cd18f7f6684246a67f
 
 build:
   number: 0
@@ -46,6 +46,7 @@ requirements:
     - tqdm
     - typing_extensions
     - narwhals >=2
+    - pyviz-comms >=2.0.0
   run_constrained:
     - holoviews >=1.18.0
     # set bokeh-fastapi bounds as discussed in https://github.com/AnacondaRecipes/panel-feedstock/pull/39
