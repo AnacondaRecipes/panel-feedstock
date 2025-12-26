@@ -10,7 +10,7 @@ source:
   sha256: 192a25fa4afdb25c5d0bf00d3749bb1b3601f25cddb76492e355fa278f91fce8
 
 build:
-  number: 0
+  number: 2
   skip: true  # [py<310]
   entry_points:
     - panel = panel.command:main
