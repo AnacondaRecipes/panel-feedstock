@@ -1,5 +1,5 @@
 {% set name = "panel" %}
-{% set version = "1.8.4" %}
+{% set version = "1.8.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c4d6e7e3a895d3a42b6b69ee30d3acc191580619a2d1b8cd18f7f6684246a67f
+  sha256: 67f7529b06cfcd67a2eb2338c4c7d43b325925b209fb6a966526bcb32c956cb7
 
 build:
   number: 0
@@ -19,16 +19,16 @@ build:
 
 requirements:
   host:
+    - pip
     - python
     - hatchling
     - hatch-vcs
     - param >=2.1.0
     - bokeh >=3.7.0,<3.9.0
     - pyviz_comms >=0.7.4
-    - nodejs 20.17
     - requests
     - packaging
-    - pip
+    - nodejs >=18
   run:
     - python
     - bokeh >=3.7.0,<3.9.0
@@ -38,19 +38,24 @@ requirements:
     - markdown-it-py
     - linkify-it-py
     - mdit-py-plugins
+    - narwhals >=2
     - requests
     - bleach
     - typing-extensions
     - pandas >=1.2
     - packaging
     - tqdm
-    - typing_extensions
-    - narwhals >=2
-    - pyviz-comms >=2.0.0
   run_constrained:
     - holoviews >=1.18.0
     # set bokeh-fastapi bounds as discussed in https://github.com/AnacondaRecipes/panel-feedstock/pull/39
     - bokeh-fastapi >=0.1.5,<0.2.0
+
+# E TypeError: 'async_generator' object is not callable
+{% set tests_to_skip = "test_reload_on_update" %}
+# E AttributeError: 'async_generator' object has no attribute 'isdir'
+{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_is_dir" %}
+# E AttributeError: 'async_generator' object has no attribute 'ls'
+{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_ls" %}
 
 test:
   imports:
@@ -58,9 +63,14 @@ test:
     - panel.io
   requires:
     - pip
+    - pytest
+    - pytest-tornasync
+    - esbuild
   commands:
     - pip check
     - panel --help
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest --pyargs -k "not({{ tests_to_skip }})" panel.tests
 
 about:
   home: https://panel.holoviz.org
