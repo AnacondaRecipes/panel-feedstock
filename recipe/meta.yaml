@@ -56,6 +56,10 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_is_dir" %}
 # E AttributeError: 'async_generator' object has no attribute 'ls'
 {% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_ls" %}
+        # bundle = CWD / "JSTestComponent.bundle.js"
+        # try:
+# ERROR: Could not find `npm` or it generated an error. Ensure it is installed and can be run with `npm --version`. You can get it with conda or you favorite package manager or nodejs manager.
+{% set tests_to_skip = tests_to_skip + " or test_compile_component or test_compile_component_with_shared_file" %}
 
 test:
   imports:
