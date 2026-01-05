@@ -56,8 +56,6 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_is_dir" %}
 # E AttributeError: 'async_generator' object has no attribute 'ls'
 {% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_ls" %}
-# ERROR: Could not find `npm` or it generated an error. Ensure it is installed and can be run with `npm --version`.
-{% set tests_to_skip = tests_to_skip + " or test_compile_component or test_compile_component_with_shared_file" %}
 # >       assert text_input.width == 121
 # E       assert 111 == 121
 # E        +  where 111 = TextInput(width=111).width
@@ -76,6 +74,7 @@ test:
     - pytest
     - pytest-tornasync
     - esbuild
+    - nodejs
   commands:
     - pip check
     - panel --help
