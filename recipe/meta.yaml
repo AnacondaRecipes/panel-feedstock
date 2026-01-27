@@ -1,5 +1,10 @@
 {% set name = "panel" %}
-{% set version = "1.8.5" %}
+{% set version = "1.8.6" %}
+{% set tests_to_skip = "test_reload_on_update" %}
+{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_is_dir" %}
+{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_ls" %}
+{% set tests_to_skip = tests_to_skip + " or test_param_async_generator_abort or test_pass_bind_multi_async_generator_by_reference_and_abort" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_autoreload_app_local_module" %}  # [linux]
 
 package:
   name: {{ name|lower }}
@@ -7,7 +12,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 67f7529b06cfcd67a2eb2338c4c7d43b325925b209fb6a966526bcb32c956cb7
+  sha256: e1570f2042c04bd6cf458e3d5f0bb8319d12ee7f6cb247814a5378ab205c70b9
 
 build:
   number: 0
@@ -45,26 +50,22 @@ requirements:
     - pandas >=1.2
     - packaging
     - tqdm
+    - pyviz-comms >=2.0.0
+    - typing_extensions
   run_constrained:
     - holoviews >=1.18.0
     # set bokeh-fastapi bounds as discussed in https://github.com/AnacondaRecipes/panel-feedstock/pull/39
     - bokeh-fastapi >=0.1.5,<0.2.0
 
 # E TypeError: 'async_generator' object is not callable
-{% set tests_to_skip = "test_reload_on_update" %}
 # E AttributeError: 'async_generator' object has no attribute 'isdir'
-{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_is_dir" %}
 # E AttributeError: 'async_generator' object has no attribute 'ls'
-{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_ls" %}
 # >       assert text_input.width == 121
 # E       assert 111 == 121
 # E        +  where 111 = TextInput(width=111).width
-{% set tests_to_skip = tests_to_skip + " or test_param_async_generator_abort or test_pass_bind_multi_async_generator_by_reference_and_abort" %}  # [win]
 #             r2 = requests.get(f"http://localhost:{port}/{app_name}")
 #             assert r2.status_code == 200
 # >           assert "<title>B</title>" in r2.content.decode('utf-8')
-{% set tests_to_skip = tests_to_skip + " or test_autoreload_app_local_module" %}  # [linux]
-
 test:
   imports:
     - panel
