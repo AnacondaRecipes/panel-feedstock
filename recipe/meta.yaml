@@ -67,7 +67,7 @@ test:
     - pip check
     - panel --help
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest --pyargs panel.tests --asyncio-mode=auto --asyncio-default-fixture-loop-scope=function --log-cli-level=INFO -k "not test_autoreload_app_local_module"
+    - pytest --pyargs panel.tests --asyncio-mode=auto --log-cli-level=INFO -k "not test_autoreload_app_local_module"
 
 about:
   home: https://panel.holoviz.org
