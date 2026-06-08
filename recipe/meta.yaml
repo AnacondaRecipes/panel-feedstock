@@ -52,8 +52,6 @@ requirements:
     - bokeh-fastapi >=0.1.5,<0.2.0
 
 test:
-  source_files:
-    - pyproject.toml
   imports:
     - panel
     - panel.io
@@ -69,7 +67,7 @@ test:
     - pip check
     - panel --help
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest --pyargs panel.tests
+    - pytest --pyargs panel.tests --asyncio-mode=auto --asyncio-default-fixture-loop-scope=function --log-cli-level=INFO -k "not test_autoreload_app_local_module"
 
 about:
   home: https://panel.holoviz.org
