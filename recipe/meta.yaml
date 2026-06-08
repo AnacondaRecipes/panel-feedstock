@@ -1,5 +1,5 @@
 {% set name = "panel" %}
-{% set version = "1.9.2" %}
+{% set version = "1.9.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ede8daa7a2515a2f3b49f19ed9aff75fcef48d6d8c3b9df3a4ebf26a551a0407
+  sha256: 4d7de30561e31674451ade5f029cddbec6156fd30f3e4cfd7da82f6ecfcbb98f
 
 build:
   number: 0
@@ -24,7 +24,7 @@ requirements:
     - hatchling
     - hatch-vcs
     - param >=2.1.0
-    - bokeh >=3.7.0,<3.10.0
+    - bokeh >=3.8.0,<3.10.0
     - pyviz_comms >=0.7.4
     - requests
     - packaging
@@ -34,6 +34,7 @@ requirements:
     - bokeh >=3.7.0,<3.10.0
     - param >=2.1.0,<3.0
     - pyviz_comms >=2.0.0
+    - panel-material-ui >=0.10.0
     - markdown
     - markdown-it-py
     - linkify-it-py
@@ -41,7 +42,6 @@ requirements:
     - narwhals >=2
     - requests
     - nh3
-    - panel-material-ui >=0.10.0
     - typing-extensions
     - pandas >=1.2
     - packaging
@@ -51,36 +51,25 @@ requirements:
     # set bokeh-fastapi bounds as discussed in https://github.com/AnacondaRecipes/panel-feedstock/pull/39
     - bokeh-fastapi >=0.1.5,<0.2.0
 
-# E TypeError: 'async_generator' object is not callable
-{% set tests_to_skip = "test_reload_on_update" %}
-# E AttributeError: 'async_generator' object has no attribute 'isdir'
-{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_is_dir" %}
-# E AttributeError: 'async_generator' object has no attribute 'ls'
-{% set tests_to_skip = tests_to_skip + " or test_remote_file_provider_ls" %}
-# >       assert text_input.width == 121
-# E       assert 111 == 121
-# E        +  where 111 = TextInput(width=111).width
-{% set tests_to_skip = tests_to_skip + " or test_param_async_generator_abort or test_pass_bind_multi_async_generator_by_reference_and_abort" %}  # [win]
-#             r2 = requests.get(f"http://localhost:{port}/{app_name}")
-#             assert r2.status_code == 200
-# >           assert "<title>B</title>" in r2.content.decode('utf-8')
-{% set tests_to_skip = tests_to_skip + " or test_autoreload_app_local_module" %}  # [linux]
-
 test:
+  source_files:
+    - pyproject.toml
   imports:
     - panel
     - panel.io
   requires:
     - pip
-    - pytest
-    - pytest-tornasync
+    - pytest >=7
+    - pytest-asyncio
+    - pytest-rerunfailures <16.0
+    - pytest-xdist
     - esbuild
     - nodejs
   commands:
     - pip check
     - panel --help
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest --pyargs -k "not({{ tests_to_skip }})" panel.tests
+    - pytest --pyargs panel.tests
 
 about:
   home: https://panel.holoviz.org
@@ -98,5 +87,4 @@ extra:
   recipe-maintainers:
     - philippjfr
   skip-lints:
-    - python_build_tool_in_run
     - host_section_needs_exact_pinnings
