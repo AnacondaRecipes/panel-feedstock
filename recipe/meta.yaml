@@ -86,6 +86,8 @@ outputs:
         - pytest-xdist
         - esbuild
         - nodejs >=18
+        # The old pytest-rerunfailures above expects pkg_resources to be available. Pin older setuptools. 
+        - setuptools <82
       commands:
         - pip check
         - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
