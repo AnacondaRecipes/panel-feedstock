@@ -10,7 +10,7 @@ source:
   sha256: 373bdb124c1b33c3dd4c112f348f4cfb2a7f1634b36a51e6ab01a4b5b6ec833c
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: panel-core
@@ -65,6 +65,8 @@ outputs:
         - pytest-xdist
         - esbuild
         - nodejs >=18
+        # The old pytest-rerunfailures above expects pkg_resources to be available. Pin older setuptools. 
+        - setuptools <82
       commands:
         - panel --help
         - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
