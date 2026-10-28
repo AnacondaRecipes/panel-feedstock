@@ -60,16 +60,9 @@ outputs:
         - panel.io
       requires:
         - pip
-        - pytest >=7
-        - pytest-asyncio
-        - pytest-rerunfailures <16.0
-        - pytest-xdist
-        - esbuild
-        - nodejs >=18
       commands:
         - panel --help
         - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-        - pytest --pyargs panel.tests --asyncio-mode=auto --log-cli-level=INFO -k "not test_autoreload_app_local_module"
   - name: panel
     build:
       number: 0
@@ -87,9 +80,16 @@ outputs:
         - panel
       requires:
         - pip
-        - python
+        - pytest >=7
+        - pytest-asyncio
+        - pytest-rerunfailures <16.0
+        - pytest-xdist
+        - esbuild
+        - nodejs >=18
       commands:
         - pip check
+        - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+        - pytest --pyargs panel.tests --asyncio-mode=auto --log-cli-level=INFO -k "not test_autoreload_app_local_module"
 
 about:
   home: https://panel.holoviz.org
