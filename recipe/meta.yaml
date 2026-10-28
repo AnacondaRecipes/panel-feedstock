@@ -16,7 +16,7 @@ outputs:
   - name: panel-core
     build:
       number: 0
-      skip: true  # [py<310]
+      skip: true  # [py<312]
       entry_points:
         - panel = panel.command:main
       script:
@@ -72,7 +72,7 @@ outputs:
   - name: panel
     build:
       number: 0
-      skip: true  # [py<310]
+      skip: true  # [py<312]
     requirements:
       host:
         - pip
