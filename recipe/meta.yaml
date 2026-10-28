@@ -1,5 +1,5 @@
 {% set name = "panel" %}
-{% set version = "1.9.4" %}
+{% set version = "1.10.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 373bdb124c1b33c3dd4c112f348f4cfb2a7f1634b36a51e6ab01a4b5b6ec833c
+  sha256: ed4edce651ff08377e7927f53eccc425123a79db49afac0a7cae61436de61494
 
 build:
   number: 0
@@ -16,7 +16,7 @@ outputs:
   - name: panel-core
     build:
       number: 0
-      skip: true  # [py<310]
+      skip: true  # [py<312]
       entry_points:
         - panel = panel.command:main
       script:
@@ -29,14 +29,14 @@ outputs:
         - hatchling
         - hatch-vcs
         - param >=2.1.0
-        - bokeh >=3.8.0,<3.10.0
+        - bokeh >=3.10.0,<3.11.0
         - pyviz_comms >=0.7.4
         - requests
         - packaging
         - nodejs >=18
       run:
         - python
-        - bokeh >=3.7.0,<3.10.0
+        - bokeh >=3.10.0,<3.11.0
         - param >=2.1.0,<3.0
         - pyviz_comms >=2.0.0
         - markdown
@@ -52,11 +52,32 @@ outputs:
         - tqdm
       run_constrained:
         - holoviews >=1.18.0
-        - bokeh-fastapi >=0.1.5,<0.2.0
+        # migrate
+        - libcst >=1.1
     test:
       imports:
         - panel
         - panel.io
+      requires:
+        - pip
+      commands:
+        - panel --help
+        - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+  - name: panel
+    build:
+      number: 0
+      skip: true  # [py<312]
+    requirements:
+      host:
+        - pip
+        - python
+      run:
+        - python
+        - {{ pin_subpackage('panel-core', exact=True) }}
+        - panel-material-ui >=0.16.6,<0.17
+    test:
+      imports:
+        - panel
       requires:
         - pip
         - pytest >=7
@@ -65,30 +86,12 @@ outputs:
         - pytest-xdist
         - esbuild
         - nodejs >=18
-      commands:
-        - panel --help
-        - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-        - pytest --pyargs panel.tests --asyncio-mode=auto --log-cli-level=INFO -k "not test_autoreload_app_local_module"
-  - name: panel
-    build:
-      number: 1
-      skip: true  # [py<310]
-    requirements:
-      host:
-        - pip
-        - python
-      run:
-        - python
-        - {{ pin_subpackage('panel-core', exact=True) }}
-        - panel-material-ui >=0.10.0
-    test:
-      imports:
-        - panel
-      requires:
-        - pip
-        - python
+        # The old pytest-rerunfailures above expects pkg_resources to be available. Pin older setuptools. 
+        - setuptools <82
       commands:
         - pip check
+        - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+        - pytest --pyargs panel.tests --asyncio-mode=auto --log-cli-level=INFO -k "not test_autoreload_app_local_module"
 
 about:
   home: https://panel.holoviz.org
